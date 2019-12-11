@@ -1,0 +1,11 @@
+---
+- hosts: 
+  
+  vars:
+    hostname: hostname_test
+  
+  tasks:
+  - name: Configure Linux hostname
+    hostname:
+      name: {{ hostname }}
+
