@@ -1,6 +1,14 @@
 ---
+
 - name: reboot server lin1
   hosts: all
   tasks:
-    - name: Reboot server
+    - name: open firewall port
+      firewalld:
+        service: http
+        immediate: true
+        permanent: true
+        state: enabled
+
+    - name: rebooting lin1
       reboot:
