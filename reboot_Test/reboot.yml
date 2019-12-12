@@ -1,5 +1,6 @@
 ---
-- hosts: all
+- name: reboot server lin1
+  hosts: all
   tasks:
     - name: Reboot server
       reboot:
