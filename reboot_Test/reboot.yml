@@ -1,7 +1,5 @@
 ---
-
-- name: reboot server lin1
-  hosts: all
+- hosts: all
   tasks:
     - name: open firewall port
       firewalld:
