@@ -3,9 +3,13 @@
   become: true
   
   tasks:
-    - name: Reboot node and stop polling.
+    - name: Changing hostname
+      hostname:
+      name: linux1
+      
+    - name: Reboot VM and waiting for connection.
       reboot:
 
-    - name: wait for host to finish reboot
+    - name: Wait for connection after reboot
       wait_for_connection:
         timeout: 900
