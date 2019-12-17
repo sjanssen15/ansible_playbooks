@@ -9,8 +9,4 @@
 
     - name: wait for host to finish reboot
       wait_for_connection:
-      connect_timeout: 20
-      sleep: 5
-      delay: 5
-      timeout: 300
-      when: task_result is changed
+        timeout: 900
