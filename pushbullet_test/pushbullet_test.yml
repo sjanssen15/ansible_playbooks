@@ -7,11 +7,11 @@
         api_key: "{{ pushbullet_api }}"
         device: "OPPO CPH1979"
         title: Test message from {{ ansible_nodename }}
-        body: "Hostname: {{ ansible_hostname }} | OS: {{ ansible_os_family }} | IP address: {{ ansible_lo.ipv4.address }}"
+        body: "Hostname: {{ ansible_hostname }} | OS: {{ ansible_os_family }} | IP address: {{ ansible_eth1.ipv4.address }}"
 
-    - name: Send message
+    - name: Send message 2
       pushbullet:
         api_key: "{{ pushbullet_api }}"
         device: "SANDER-PC"
         title: Test message from {{ ansible_nodename }} to Sander-PC
-        body: "Hostname: {{ ansible_hostname }} | OS: {{ ansible_os_family }} | IP address: {{ ansible_lo.ipv4.address }}"
+        body: "Hostname: {{ ansible_hostname }} | OS: {{ ansible_os_family }} | IP address: {{ ansible_eth1.ipv4.address }}"
