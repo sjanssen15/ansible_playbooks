@@ -4,8 +4,7 @@
   
   tasks:
     - name: Reboot node and stop polling.
-      shell: reboot
-      poll: 0 # Fire & Forget
+      reboot:
 
     - name: wait for host to finish reboot
       wait_for_connection:
