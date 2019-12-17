@@ -4,6 +4,6 @@
     tasks:
     - name: Send message
       pushbullet:
-        api_key: {{ pushbullet_api }}
+        api_key: "{{ pushbullet_api }}"
         device: "SANDER-PC"
         title: Test message
