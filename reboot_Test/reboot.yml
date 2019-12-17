@@ -5,7 +5,7 @@
   tasks:
     - name: Changing hostname
       hostname:
-      name: linux1
+        name: linux1
       
     - name: Reboot VM and waiting for connection.
       reboot:
