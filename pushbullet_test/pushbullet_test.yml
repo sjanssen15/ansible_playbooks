@@ -5,5 +5,5 @@
     - name: Send message
       pushbullet:
         api_key: "{{ pushbullet_api }}"
-        device: Chrome
+        device: "OPPO CPH1979"
         title: Test message
