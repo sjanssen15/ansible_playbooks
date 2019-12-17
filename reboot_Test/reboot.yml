@@ -1,25 +1,16 @@
 ---
 - hosts: all
-
+  become: true
+  
   tasks:
-  - name: Check the uptime prior reboot
-    shell: uptime
-     register: UPTIME_PRE_REBOOT
+    - name: Reboot node and stop polling.
+      shell: reboot
+      poll: 0 # Fire & Forget
 
-  - name: Reboot node and stop polling.
-    shell: reboot
-    poll: 0 # Fire & Forget
-
-  - name: wait for host to finish reboot
-    wait_for_connection:
-     connect_timeout: 20
-     sleep: 5
-     delay: 5
-     timeout: 300
-     when: task_result is changed
-
-  - name: Check the uptime post reboot
-    shell: uptime
-     register: UPTIME_POST_REBOOT
-
-  - debug: msg={{UPTIME_POST_REBOOT.stdout}}
+    - name: wait for host to finish reboot
+      wait_for_connection:
+      connect_timeout: 20
+      sleep: 5
+      delay: 5
+      timeout: 300
+      when: task_result is changed
