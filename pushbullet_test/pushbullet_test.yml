@@ -8,3 +8,10 @@
         device: "OPPO CPH1979"
         title: Test message from {{ ansible_nodename }}
         body: "Hostname: {{ ansible_hostname }} | OS: {{ ansible_os_family }} | IP address: {{ ansible_lo.ipv4.address }}"
+
+    - name: Send message
+      pushbullet:
+        api_key: "{{ pushbullet_api }}"
+        device: "SANDER-PC"
+        title: Test message from {{ ansible_nodename }} to Sander-PC
+        body: "Hostname: {{ ansible_hostname }} | OS: {{ ansible_os_family }} | IP address: {{ ansible_lo.ipv4.address }}"
