@@ -6,4 +6,5 @@
       pushbullet:
         api_key: "{{ pushbullet_api }}"
         device: "OPPO CPH1979"
-        title: Test message
+        title: Test message from {{ ansible_nodename }}
+        body: Hostname: "{{ ansible_hostname }} | {{ ansible_os_family }}"
