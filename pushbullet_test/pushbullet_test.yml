@@ -5,5 +5,5 @@
     - name: Send message
       pushbullet:
         api_key: "{{ pushbullet_api }}"
-        device: "SANDER-PC"
+        device: Chrome
         title: Test message
