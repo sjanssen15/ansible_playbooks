@@ -2,12 +2,12 @@
 - hosts: all
 
   tasks:
-    - name: Send message
-      pushbullet:
-        api_key: "{{ pushbullet_api }}"
-        device: "OPPO CPH1979"
-        title: Test message from {{ ansible_nodename }}
-        body: "Hostname: {{ ansible_hostname }} | OS: {{ ansible_os_family }} | IP address: {{ ansible_eth1.ipv4.address }}"
+#    - name: Send message
+#      pushbullet:
+#        api_key: "{{ pushbullet_api }}"
+#        device: "OPPO CPH1979"
+#        title: Test message from {{ ansible_nodename }}
+#        body: "Hostname: {{ ansible_hostname }} | OS: {{ ansible_os_family }} | IP address: {{ ansible_eth1.ipv4.address }}"
 
     - name: Send message 2
       pushbullet:
