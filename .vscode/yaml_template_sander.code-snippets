@@ -1,0 +1,11 @@
+"ansible_play": {
+	"prefix": "ansible_",
+	"body": [
+	  "---",
+	  "- hosts: all",
+	  "",
+	  "  tasks:",
+	  "    - name:"
+	],
+	"description": "ansible_play"
+  }
