@@ -15,10 +15,10 @@
       password: "{{ postgres_pwd | password_hash('sha512') }}"
       update_password: on_create
   
-  - name: Verify if Postgres data volume is mounted on the correct path
-    debug:
-      msg: "{{ ansible_mounts.mount }}"
-    register: mount_points
+  - debug:
+        msg: "{{ansible_mounts}}"
+    
+
 
   - name: Abort script when volume is not mounted
     meta: end_host
