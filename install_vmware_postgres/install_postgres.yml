@@ -6,6 +6,9 @@
   vars:
     mount_datavolume: /
     mount_check: false
+    postgres_base_folder: /postgresql_data/data
+    postgres_installer: /tmp/vmware-postgres-11.7-3.el7.x86_64.rpm
+    postgis_installer: /tmp/vmware-postgres-postgis-extension-11.7-3.el7.x86_64.rpm
 
   tasks:
   - name: Create the Postgres service account
@@ -31,4 +34,18 @@
   - name: Generate folder structure for database
     file:
       state: directory
-      path: /postgresql_data/data
+      path: {{ postgres_base_folder}}
+
+  - name: Copy installer files needed
+    copy:
+      dest: /tmp/
+    with_items:
+      - {{ postgres_installer }}
+      - {{ postgis_installer }}
+
+  - name: Install base rpm VMware Postgres
+    yum:
+      name: {{ postgres_installer }}
+      state: present
+
+
