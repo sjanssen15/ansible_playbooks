@@ -4,7 +4,7 @@
   become: yes
   hosts: all
   vars:
-    mount_datavolume: /postgresql_data
+    mount_datavolume: /
     mount_check: false
 
   tasks:
@@ -24,7 +24,7 @@
 
   - name: Abort script when volume is not mounted
     fail:
-      msg: The data volume is not mounted on /postgresql_data
+      msg: The data volume is not mounted on /postgresql_data. Aborting the Postgres installation.
     when: mount_check == false
 
   - name: next step
