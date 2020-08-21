@@ -1,1 +1,14 @@
+---
+- name: Install VMware Postgres
+  gather_facts: true
+  become: true
+  hosts: all
+  become: yes
 
+  tasks:
+  - name: Install VMware Postgres
+    user:
+        name: postgres
+        comment: Postgres service account
+        group: postgres
+        state: present
