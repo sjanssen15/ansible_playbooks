@@ -18,10 +18,9 @@
   - debug: 
       var: item.mount
     with_items: "{{ ansible_mounts }}"
-    
-    #set_fact:
-    #  mount_check: false
-    #when: "{{ item.mount }} != {{ mount_datavolume }}"
+    set_fact:
+      mount_check: false
+    when: "{{ item.mount }} != {{ mount_datavolume }}"
 
 
   - name: Abort script when volume is not mounted
