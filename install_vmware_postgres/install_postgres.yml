@@ -69,3 +69,23 @@
     command: "/usr/bin/initdb -D {{ postgres_base_folder }}/"
     become_user: postgres
     when: not pgdata_dir_version.stat.exists
+
+  - name: Generate service file & start Postgres
+    copy:
+      content: |
+                [Unit]
+                Description=CBS - PostgreSQL database server
+                Documentation=man:postgres(1)
+
+                [Service]
+                Type=notify
+                User=postgres
+                ExecStart=/usr/local/pgsql/bin/postgres -D {{ postgres_base_folder }}
+                ExecReload=/bin/kill -HUP $MAINPID
+                KillMode=mixed
+                KillSignal=SIGINT
+                TimeoutSec=0
+
+                [Install]
+                WantedBy=multi-user.target
+      dest: /etc/systemd/system/postgresql.service
