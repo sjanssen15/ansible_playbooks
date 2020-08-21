@@ -17,7 +17,7 @@
       update_password: on_create
   
   - debug:
-    msg: "{{ mounts }}"
+      msg: "{{ mounts }}"
 
   - name: Verify if mount is present
     set_fact:
