@@ -20,7 +20,7 @@
     with_items: "{{ ansible_mounts }}"
     set_fact:
       mount_check: false
-    when: item.mount != mount_datavolume
+    #when: item.mount != mount_datavolume
 
 
   - name: Abort script when volume is not mounted
