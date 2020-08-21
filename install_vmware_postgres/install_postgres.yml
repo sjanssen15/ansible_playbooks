@@ -47,9 +47,6 @@
 
   - name: Install base rpm VMware Postgres
     yum:
-      name: "{{ item }}"
+      name: "{{ postgres_installer }}"
       state: present
-    with_items:
-      - "{{ postgres_installer }}"
-      - "{{ postgis_installer }}"
 
