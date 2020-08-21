@@ -24,4 +24,8 @@
 
   - name: Abort script when volume is not mounted
     meta: end_host
-    when: mount_check != true
+    when: mount_check == false
+
+  - name: next step
+    debug:
+      msg: you made it
