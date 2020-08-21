@@ -6,6 +6,7 @@
   vars:
     mount_datavolume: /
     mount_check: false
+    postgres_mount_volume: /postgresql_data
     postgres_base_folder: /postgresql_data/data
     postgres_installer: /tmp/vmware-postgres-11.7-3.el7.x86_64.rpm
     postgis_installer: /tmp/vmware-postgres-postgis-extension-11.7-3.el7.x86_64.rpm
@@ -50,6 +51,14 @@
     yum:
       name: "{{ postgres_installer }}"
       state: present
+
+  - name: Make postgres user owner of postgres_data volume
+    file:
+      state: directory
+      path: "{{ postgres_mount_volume }}"
+      owner: postgres
+      group: root
+      recurse: yes
 
   - name: Check if PostgreSQL database is initialized.
     stat:
