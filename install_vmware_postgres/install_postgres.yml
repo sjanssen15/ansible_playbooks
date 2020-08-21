@@ -16,7 +16,7 @@
       update_password: on_create
   
   - debug: 
-    var: "{{ item.mount }}"
+      var: "{{ item.mount }}"
     with_items:
     - "{{ ansible_mounts }}"
     set_fact:
