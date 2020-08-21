@@ -10,5 +10,4 @@
     user:
         name: postgres
         comment: Postgres service account
-        group: postgres
         state: present
