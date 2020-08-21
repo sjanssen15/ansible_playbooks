@@ -4,7 +4,7 @@
   become: yes
   hosts: all
   vars:
-    mount_datavolume: /run #change to /postgresql_data !!!
+    mount_datavolume: /run
 
   tasks:
   - name: Create the Postgres service account
@@ -15,7 +15,7 @@
       password: "{{ postgres_pwd | password_hash('sha512') }}"
       update_password: on_create
 
-  - name: Verify if data disk is present
-    debug:
-      msg: "Installation can not continu because the datamount is not present"
-    when: item.mount != mount_datavolume
+  - debug:
+      msg: "The directory is mounted"
+    with_items: ansible_mounts
+    when: item.mount == mount_datavolume
