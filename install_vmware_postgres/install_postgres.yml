@@ -80,7 +80,7 @@
                 [Service]
                 Type=notify
                 User=postgres
-                ExecStart=/usr/local/pgsql/bin/postgres -D {{ postgres_base_folder }}/
+                ExecStart=/usr/bin/postgres -D {{ postgres_base_folder }}/
                 ExecReload=/bin/kill -HUP $MAINPID
                 KillMode=mixed
                 KillSignal=SIGINT
