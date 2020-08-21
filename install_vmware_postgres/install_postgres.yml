@@ -15,7 +15,8 @@
       password: "{{ postgres_pwd | password_hash('sha512') }}"
       update_password: on_create
   
-  - debug: var=item.mount
+  - debug: 
+    var: "{{ item.mount }}"
     with_items:
     - "{{ ansible_mounts }}"
     set_fact:
