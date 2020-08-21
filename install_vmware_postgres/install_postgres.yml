@@ -57,6 +57,6 @@
     register: pgdata_dir_version
 
   - name: Initialize database with correct data path
-    command: "/usr/bin/initdb/initdb -D {{ postgres_base_folder }}"
+    command: "/usr/bin/initdb/initdb -D {{ postgres_base_folder }}/"
     become_user: postgres
     when: not pgdata_dir_version.stat.exists
