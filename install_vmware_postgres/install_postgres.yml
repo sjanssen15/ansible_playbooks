@@ -5,6 +5,7 @@
   hosts: all
   vars:
     mount_datavolume: /postgresql_data
+    mounts: '{{ ansible_mounts | selectattr("mount") | list }}'
 
   tasks:
   - name: Create the Postgres service account
@@ -17,7 +18,7 @@
   
   - set_fact:
       mount_check: false
-    when: ansible_mounts.mount != mount_datavolume
+    when: mounts != mount_datavolume
     
     #when: item.mount != mount_datavolume
 
