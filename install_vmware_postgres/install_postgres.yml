@@ -51,6 +51,12 @@
       name: "{{ postgres_installer }}"
       state: present
 
+  - name: Check if PostgreSQL database is initialized.
+    stat:
+      path: "{{ postgres_base_folder }}/PG_VERSION"
+    register: pgdata_dir_version
+
   - name: Initialize database with correct data path
     command: "/usr/bin/initdb/initdb -D {{ postgres_base_folder }}"
     become_user: postgres
+    when: not pgdata_dir_version.stat.exists
