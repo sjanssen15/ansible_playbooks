@@ -16,8 +16,8 @@
       update_password: on_create
   
   - debug:
-        msg: "{{ansible_mounts.mount }}"
-    when: "{{ansible_mounts.mount }} != {{ mount_datavolume }}"
+      msg: "Mount Point {{item.mount}} is at {{item.block_used/item.block_total*100}} percent "
+    loop: "{{ansible_mounts}}"
 
 
   - name: Abort script when volume is not mounted
