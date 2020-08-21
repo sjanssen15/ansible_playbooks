@@ -78,13 +78,14 @@
                 Documentation=man:postgres(1)
 
                 [Service]
-                Type=notify
+                Type=forking
                 User=postgres
+                Group=postgres
                 ExecStart=/usr/bin/postgres -D {{ postgres_base_folder }}/
                 ExecReload=/bin/kill -HUP $MAINPID
                 KillMode=mixed
                 KillSignal=SIGINT
-                TimeoutSec=0
+                TimeoutSec=30
 
                 [Install]
                 WantedBy=multi-user.target
@@ -101,3 +102,5 @@
       state: started
       enabled: yes
       daemon_reload: yes
+
+  - name: 
