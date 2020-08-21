@@ -34,21 +34,21 @@
   - name: Generate folder structure for database
     file:
       state: directory
-      path: {{ postgres_base_folder}}
+      path: "{{ postgres_base_folder}}"
 
   - name: Copy installer files needed
     copy:
       dest: /tmp/
     with_items:
-      - {{ postgres_installer }}
-      - {{ postgis_installer }}
+      - "{{ postgres_installer }}"
+      - "{{ postgis_installer }}"
 
   - name: Install base rpm VMware Postgres
     yum:
-      name: {{ item }}
+      name: "{{ item }}"
       state: present
     with_items:
-      - {{ postgres_installer }}
-      - {{ postgis_installer }}
+      - "{{ postgres_installer }}"
+      - "{{ postgis_installer }}"
 
 
