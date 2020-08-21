@@ -12,7 +12,7 @@
       name: postgres
       comment: Postgres service account
       state: present
-      password: "{{ postgres_pwd | password_hash('sha512') }}"
+      password: "{{ 'postgres_pwd' | password_hash('sha512') }}"
       update_password: on_create
 
   - name: Present randomly generated password
