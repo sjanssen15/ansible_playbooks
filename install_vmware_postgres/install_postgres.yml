@@ -118,7 +118,7 @@
 
   - name: add new configuration to "pg_hba.conf"
     blockinfile:
-      dest: /var/lib/pgsql/9.4/data/pg_hba.conf
+      dest: "{{ postgres_base_folder }}/pg_hba.conf"
       block: |
         host    all             all             {{ hba_ip_range }}                md5
 
