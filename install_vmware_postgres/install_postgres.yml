@@ -89,3 +89,10 @@
                 [Install]
                 WantedBy=multi-user.target
       dest: /etc/systemd/system/postgresql.service
+
+  - name: Enable & start Postgres service
+    systemd:
+      name: postgresql
+      state: started
+      enabled: yes
+      daemon_reload: yes
