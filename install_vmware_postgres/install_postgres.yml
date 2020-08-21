@@ -23,9 +23,7 @@
     loop: "{{ ansible_mounts }}"
 
   - name: Abort script when volume is not mounted
-    meta: end_host
-    fail:
-      msg: "The volume /postgres_data is not mounted! Aborting"
+    meta: end_play
     when: mount_check == false
 
   - name: next step
