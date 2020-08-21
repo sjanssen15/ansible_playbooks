@@ -17,6 +17,6 @@
   
   - name: Verify if Postgres data volume is mounted on the correct path
     meta: end_host
-    msg: "The Postgres data volume is not mounted. Aborting script!"
+    #msg: "The Postgres data volume is not mounted. Aborting script!"
     with_items: "{{ ansible_mounts }}"
     when: item.mount != mount_datavolume
