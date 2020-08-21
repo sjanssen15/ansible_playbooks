@@ -4,9 +4,7 @@
   become: yes
   hosts: all
   vars:
-    - name: "postgres_pwd"
-      prompt: "Password for postgres service account"
-      private: yes
+    mount_datavolume: /run #change to /postgresql_data !!!
 
   tasks:
   - name: Create the Postgres service account
@@ -15,8 +13,9 @@
       comment: Postgres service account
       state: present
       password: "{{ postgres_pwd | password_hash('sha512') }}"
-      update_password: on_create
+      update_password: on_create\
 
-  - name: Present randomly generated password
+  - name: Verify if data disk is present
     debug:
-      msg: "{{ postgres_pwd }}"
+      msg: "Installation can not continu because the datamount is not present"
+    when: item.mount != mount_datavolume
