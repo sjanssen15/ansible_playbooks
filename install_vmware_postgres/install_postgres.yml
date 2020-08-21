@@ -9,6 +9,7 @@
     postgres_base_folder: /postgresql_data/data
     postgres_installer: /tmp/vmware-postgres-11.7-3.el7.x86_64.rpm
     postgis_installer: /tmp/vmware-postgres-postgis-extension-11.7-3.el7.x86_64.rpm
+    postgresql_bin_path: 
 
   tasks:
   - name: Create the Postgres service account
@@ -50,3 +51,6 @@
       name: "{{ postgres_installer }}"
       state: present
 
+  - name: Initialize database with correct data path
+    command: "/usr/bin/initdb/initdb -D {{ postgres_base_folder }}"
+    become_user: postgres
