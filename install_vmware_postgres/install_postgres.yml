@@ -90,6 +90,11 @@
                 WantedBy=multi-user.target
       dest: /etc/systemd/system/postgresql.service
 
+  - name: Put SELinux in permissive mode, logging actions that would be blocked.
+    selinux:
+      policy: targeted
+      state: permissive
+
   - name: Enable & start Postgres service
     systemd:
       name: postgresql
