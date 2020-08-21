@@ -16,6 +16,4 @@
       update_password: on_create
 
   - debug:
-      msg: "The directory is mounted"
-    with_items: ansible_mounts
-    when: item.mount == mount_datavolume
+      msg: {{ ansible_mounts }}
