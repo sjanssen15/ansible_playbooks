@@ -3,7 +3,6 @@
   gather_facts: true
   become: true
   hosts: all
-  become: yes
   vars:
     postgres_pwd: "{{ lookup('password', '/dev/null length=15 chars=ascii_letters') }}" #random generated
 
@@ -13,7 +12,7 @@
       name: postgres
       comment: Postgres service account
       state: present
-      password: "{{ postgres_pwd }}"
+      password: "{{ postgres_pwd | password_hash('sha512') }}"
 
   - name: Present randomly generated password
     debug:
