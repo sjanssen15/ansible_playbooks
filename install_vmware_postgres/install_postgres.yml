@@ -4,7 +4,7 @@
   become: true
   hosts: all
   vars:
-    postgres_pwd: "{{ lookup('password', '/dev/null length=18 chars=ascii_letters') }}" #random generated
+    postgres_pwd: "{{ lookup('password', '/dev/null length=18 chars=ascii_letters,digits,punctuation') }}" #random generated
 
   tasks:
   - name: Install VMware Postgres
