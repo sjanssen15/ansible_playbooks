@@ -17,8 +17,7 @@
   
   - debug: 
       var: "{{ item.mount }}"
-    with_items:
-    - "{{ ansible_mounts }}"
+    with_items: "{{ ansible_mounts }}"
     set_fact:
       mount_check: false
     when: "{{ item.mount }} != {{ mount_datavolume }}"
