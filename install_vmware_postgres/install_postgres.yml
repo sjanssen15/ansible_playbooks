@@ -38,6 +38,7 @@
 
   - name: Copy installer files needed
     copy:
+      src: "{{ item }}"
       dest: /tmp/
     with_items:
       - "{{ postgres_installer }}"
