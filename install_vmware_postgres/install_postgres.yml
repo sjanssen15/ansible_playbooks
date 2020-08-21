@@ -22,7 +22,7 @@
   - name: Verify if mount is present
     set_fact:
       mount_check: false
-    when: mounts != mount_datavolume
+    when: mounts.mount != mount_datavolume
     
     #when: item.mount != mount_datavolume
 
