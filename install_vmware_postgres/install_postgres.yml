@@ -97,10 +97,9 @@
       policy: targeted
       state: permissive
 
-  - name: Enable & start Postgres service
+  - name: Enable Postgres service
     systemd:
       name: postgresql
-      state: started
       enabled: yes
       daemon_reload: yes
 
