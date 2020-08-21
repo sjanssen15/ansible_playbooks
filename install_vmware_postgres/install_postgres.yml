@@ -16,4 +16,4 @@
       update_password: on_create
 
   - debug:
-      msg: {{ ansible_mounts }}
+      msg: "{{ ansible_mounts }}"
