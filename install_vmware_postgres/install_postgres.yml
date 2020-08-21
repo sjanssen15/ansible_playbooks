@@ -38,10 +38,12 @@
 
   - name: Copy installer files needed
     copy:
-      src: "{{ postgres_installer }}"
+      src: "{{ item }}"
       dest: /tmp/
       remote_src: no
-    become: yes
+    with_items:
+      - "{{ postgres_installer }}"
+      - "{{ postgis_installer }}"
 
   - name: Install base rpm VMware Postgres
     yum:
