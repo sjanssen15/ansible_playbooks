@@ -4,7 +4,7 @@
   become: yes
   hosts: all
   vars:
-    mount_datavolume: /run
+    mount_datavolume: /
 
   tasks:
   - name: Create the Postgres service account
