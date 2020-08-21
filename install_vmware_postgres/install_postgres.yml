@@ -10,7 +10,8 @@
     postgres_base_folder: /postgresql_data/data
     postgres_installer: /tmp/vmware-postgres-11.7-3.el7.x86_64.rpm
     postgis_installer: /tmp/vmware-postgres-postgis-extension-11.7-3.el7.x86_64.rpm
-    postgresql_bin_path: 
+    postgres_config: /postgresql_data/data/postgresql.conf
+    hba_ip_range: "192.168.4.0/24"
 
   tasks:
   - name: Create the Postgres service account
@@ -103,4 +104,26 @@
       enabled: yes
       daemon_reload: yes
 
-  #- name: 
+  - name: add new configuration to "postgresql.conf"
+    blockinfile:
+      dest: "{{ postgres_config }}"
+      block: |
+        include 'server.conf'
+
+  - name: add new configuration to "server.conf"
+    blockinfile:
+      create: yes
+      dest: "{{ postgres_base_folder }}/server.conf"
+      block: |
+        listen_addresses = '*'
+
+  - name: add new configuration to "pg_hba.conf"
+    blockinfile:
+      dest: /var/lib/pgsql/9.4/data/pg_hba.conf
+      block: |
+        host    all             all             {{ hba_ip_range }}                md5
+
+  - name: Restart the Postgres service
+    systemd:
+      name: postgresql
+      state: restarted
