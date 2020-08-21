@@ -27,6 +27,8 @@
       msg: The data volume is not mounted on /postgresql_data. Aborting the Postgres installation.
     when: mount_check == false
 
-  - name: next step
-    debug:
-      msg: you made it
+  #### START INSTALLING POSTGRES
+  - name: Generate folder structure for database
+    file:
+      state: directory
+      path: /postgresql_data/data
