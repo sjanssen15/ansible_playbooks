@@ -4,10 +4,12 @@
   become: true
   hosts: all
   vars:
-    postgres_pwd: "{{ lookup('password', '/dev/null length=18 chars=ascii_letters,digits,punctuation') }}" #random generated
+    - name: "postgres_pwd"
+      prompt: "Password for postgres service account"
+      private: yes
 
   tasks:
-  - name: Install VMware Postgres
+  - name: Create the Postgres service account
     user:
       name: postgres
       comment: Postgres service account
