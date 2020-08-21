@@ -16,7 +16,14 @@
       update_password: on_create
   
   - name: Verify if Postgres data volume is mounted on the correct path
-    meta: end_host
-    #msg: "The Postgres data volume is not mounted. Aborting script!"
+    debug:
+      msg: "Verify mount point"
     with_items: "{{ ansible_mounts }}"
+    register: mount_check
     when: item.mount != mount_datavolume
+
+  - debug: "{{ mount_check }}"
+
+  - name: Abort script when volume is not mounted
+    meta: end_host
+    when: mount_check == false
