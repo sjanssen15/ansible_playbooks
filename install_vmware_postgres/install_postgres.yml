@@ -133,19 +133,6 @@
       block: |
         host    all             all             {{ hba_ip_range }}                md5
 
-  - name: Restart the Postgres service
-    systemd:
-      name: postgresql
-      state: restarted
-  
-  - name: Set postgres database password
-    postgresql_user:
-      db: postgres
-      name: postgres
-      password: "{{ postgres_pwd }}"
-      role_attr_flags: LOGIN
-    become_user: postgres
-
   #### TUNE POSTGRES
   # See: https://github.com/melmorabity/ansible-postgresql-tune
   # Download plugin in folder /usr/share/ansible/plugins/modules/
@@ -161,3 +148,17 @@
       backup: True
       os_type: linux
     become_user: postgres
+      
+  - name: Restart the Postgres service
+    systemd:
+      name: postgresql
+      state: restarted
+
+  - name: Set postgres database password
+    postgresql_user:
+      db: postgres
+      name: postgres
+      password: "{{ postgres_pwd }}"
+      role_attr_flags: LOGIN
+    become_user: postgres
+
