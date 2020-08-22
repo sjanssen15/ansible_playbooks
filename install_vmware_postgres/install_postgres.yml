@@ -130,4 +130,4 @@
   - name: Restart the Postgres service
     systemd:
       name: postgresql
-      state: started
+      state: restarted
