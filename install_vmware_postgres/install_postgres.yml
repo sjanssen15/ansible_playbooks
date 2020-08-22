@@ -159,5 +159,5 @@
       total_memory: "{{ ansible_memtotal_mb }}" # Ansible fact
       connections: "{{ database_connections }}" # Survey
       path: "{{ postgres_config }}"
-      backup: yes
+      backup: True
       os_type: linux
