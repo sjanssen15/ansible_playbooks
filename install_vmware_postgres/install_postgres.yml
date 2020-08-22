@@ -161,3 +161,4 @@
       path: "{{ postgres_config }}"
       backup: True
       os_type: linux
+    become_user: postgres
