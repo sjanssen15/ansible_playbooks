@@ -36,10 +36,8 @@
   #### START INSTALLING POSTGRES
   - name: Install required packages
     yum:
-      name: "{{ item }}"
+      name: ['python-psycopg2']
       state: present
-    with_items:
-      - python-psycopg2
 
   - name: Generate folder structure for database
     file:
