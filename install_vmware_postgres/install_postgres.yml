@@ -20,7 +20,7 @@
       comment: Postgres service account
       state: present
       password: "{{ postgres_pwd | password_hash('sha512') }}"
-      update_password: on_create
+      update_password: always
 
   - name: Verify if mount is present
     set_fact:
