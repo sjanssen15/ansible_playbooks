@@ -131,3 +131,10 @@
     systemd:
       name: postgresql
       state: restarted
+  
+  - name: Set postgres database password
+    postgresql_user:
+      db: postgres
+      name: postgres
+      password: "{{ postgres_pwd }}"
+      role_attr_flags: LOGIN
