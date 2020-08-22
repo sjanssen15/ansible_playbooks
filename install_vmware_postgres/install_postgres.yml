@@ -151,8 +151,7 @@
   # Download plugin in folder /usr/share/ansible/plugins/modules/
 
   - name: Tune the database according to specifications given in survey
-    local_action:
-      module: postgresql_tune
+    postgresql_tune:
       harddrive_type: ssd
       db_type: "{{ database_type }}" # desktop dw mixed oltp web # survey
       cpus: "{{ ansible_processor_cores }}" # Ansible fact
