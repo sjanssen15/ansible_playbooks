@@ -148,7 +148,34 @@
       backup: True
       os_type: linux
     become_user: postgres
-      
+
+  #### Configure Auditing & logging
+  - postgresql_set:
+      name: log_destination
+      value: csvlog
+  - postgresql_set:
+      name: logging_collector
+      value: on
+  - postgresql_set:
+      name: log_directory
+      value: pg_log
+  - postgresql_set:
+      name: log_filename
+      value: postgresql-%Y-%m-%d_%H%M%S.log
+  - postgresql_set:
+      name: log_hostname
+      value: on
+  - postgresql_set:
+      name: log_connections
+      value: on
+  - postgresql_set:
+      name: log_line_prefix
+      value: '%m [%p]'
+  - postgresql_set:
+      name: log_statement
+      value: all
+
+  ####
   - name: Restart the Postgres service
     systemd:
       name: postgresql
