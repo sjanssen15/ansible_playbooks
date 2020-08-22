@@ -36,7 +36,12 @@
   #### START INSTALLING POSTGRES
   - name: Install required packages
     yum:
-      name: ['python-psycopg2']
+      name:
+        - python-psycopg2
+        - perl
+        - perl-Time-HiRes
+        - perl-Digest-SHA
+        - perl-JSON-PP
       state: present
 
   - name: Generate folder structure for database
@@ -137,7 +142,7 @@
   # See: https://github.com/melmorabity/ansible-postgresql-tune
   # Download plugin in folder /usr/share/ansible/plugins/modules/
 
-  - name: Tune the database according to specifications given in survey
+  - name: Tune the database according to specifications given in survey & VM hardware (cpu/memory)
     postgresql_tune:
       harddrive_type: ssd
       db_type: "{{ database_type }}" # desktop dw mixed oltp web # survey
@@ -184,11 +189,30 @@
       name: postgresql
       state: restarted
 
-  - name: Set postgres database password
+  - name: Set postgres db user password
     postgresql_user:
       db: postgres
       name: postgres
       password: "{{ postgres_pwd }}"
       role_attr_flags: LOGIN
     become_user: postgres
+
+  #### INSTALL pgBackRest
+  - name: Create directories needed and set permissions
+    file:
+      dest: "{{ item }}"
+      state: directory
+      owner: postgres
+      group: postgres
+    with_items:
+      - /etc/pgbackrest
+      - /etc/pgbackrest/conf.d
+  
+  - name: Generate config file for later configuration of pgBackRest
+    file:
+      dest: /etc/pgbackrest/pgbackrest.conf
+      state: touch
+      mode: '640'
+      owner: postgres
+      group: postgres
 
