@@ -76,6 +76,7 @@
     become_user: postgres
     when: not pgdata_dir_version.stat.exists
 
+  #### CONFIGURE POSTGRES CONFIG FILES
   - name: Generate service file & start Postgres
     copy:
       content: |
@@ -144,3 +145,19 @@
       password: "{{ postgres_pwd }}"
       role_attr_flags: LOGIN
     become_user: postgres
+
+  #### TUNE POSTGRES
+  # See: https://github.com/melmorabity/ansible-postgresql-tune
+  # Download plugin in folder /usr/share/ansible/plugins/modules/
+
+  - name: Tune the database according to specifications given in survey
+    local_action:
+      module: postgresql_tune
+      harddrive_type: ssd
+      db_type: "{{ database_type }}" # desktop dw mixed oltp web
+      cpus: "{{ ansible_processor_cores }}"
+      total_memory: "{{ ansible_memtotal_mb }}"
+      connections: "{{ database_connections }}"
+      path: "{{ postgres_config }}"
+      backup: yes
+      os_type: linux
