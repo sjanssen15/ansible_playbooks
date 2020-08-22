@@ -85,7 +85,7 @@
                 User=postgres
                 Group=postgres
                 
-                ExecStart= /usr/bin/pg_ctl -s -D {{ postgres_base_folder }}/ start -w -t ${TimeoutSec}
+                ExecStart= /usr/bin/pg_ctl -s -D {{ postgres_base_folder }}/ start -w
                 ExecReload=/usr/bin/pg_ctl -s -D {{ postgres_base_folder }}/ reload
                 ExecStop=  /usr/bin/pg_ctl -s -D {{ postgres_base_folder }}/ stop -m fast
                 
