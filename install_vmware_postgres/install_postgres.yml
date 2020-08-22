@@ -34,6 +34,14 @@
     when: mount_check == false
 
   #### START INSTALLING POSTGRES
+  - name: Install required packages
+    yum:
+      name: {{ item }}
+      state: present
+    with_items:
+      - libpq-dev
+      - python-psycopg2
+
   - name: Generate folder structure for database
     file:
       state: directory
@@ -138,3 +146,4 @@
       name: postgres
       password: "{{ postgres_pwd }}"
       role_attr_flags: LOGIN
+    become_user: postgres
