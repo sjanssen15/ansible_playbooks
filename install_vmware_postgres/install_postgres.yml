@@ -39,7 +39,6 @@
       name: "{{ item }}"
       state: present
     with_items:
-      - libpq-dev
       - python-psycopg2
 
   - name: Generate folder structure for database
